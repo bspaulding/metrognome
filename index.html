@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<script src="javascripts/metrognome.js"></script>
+<script src="javascripts/tap_tempo_controller.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  metronome = new Metrognome.Metronome();
+  var toggleButton = document.querySelector('input[name="toggle_playing"]');
+  toggleButton.addEventListener('click', metronome.togglePlaying);
+
+  var tapButton = document.querySelector('input[name="tap_tempo"]');
+  var controller = new Metrognome.TapTempoController(tapButton);
+  controller.tempoChanged = function(tempo) {
+    if ( !isNaN(tempo) ) {
+      tapButton.value = "Tap Tempo: " + tempo + 'bpm';
+      metronome.tempo = tempo;
+    }
+  }
+});
+</script>
+<body>
+  <input type="button" name="tap_tempo" value="Tap Tempo"/>
+  <input type="button" name="toggle_playing" value="Toggle Playing"/>
+</body>
+</html>
