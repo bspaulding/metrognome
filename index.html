@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+  html, body { background: #000; font-size: 24px; }
+  input[type="button"] {
+    -webkit-appearance: none;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 1em;
+    width: 100%;
+    padding: 2em;
+  }
+</style>
+<script src="javascripts/fastclick.js"></script>
 <script src="javascripts/metrognome/metronome.js"></script>
 <script src="javascripts/metrognome/tap_tempo_controller.js"></script>
-<script>
-window.addEventListener('DOMContentLoaded', function() {
-  metronome = new Metrognome.Metronome();
-  var toggleButton = document.querySelector('input[name="toggle_playing"]');
-  toggleButton.addEventListener('click', metronome.togglePlaying);
-
-  var tapButton = document.querySelector('input[name="tap_tempo"]');
-  var controller = new Metrognome.TapTempoController(tapButton);
-  controller.tempoChanged = function(tempo) {
-    if ( !isNaN(tempo) ) {
-      tapButton.value = "Tap Tempo: " + tempo + 'bpm';
-      metronome.tempo = tempo;
-    }
-  }
-});
-</script>
+<script src="javascripts/metrognome/serializable.js"></script>
+<script src="javascripts/metrognome/song.js"></script>
+<script src="javascripts/metrognome/app.js"></script>
+</head>
 <body>
   <input type="button" name="tap_tempo" value="Tap Tempo"/>
   <input type="button" name="toggle_playing" value="Toggle Playing"/>
